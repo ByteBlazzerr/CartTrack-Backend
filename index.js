@@ -10,8 +10,11 @@ import connectDB from './Db/index.js';
 const server = express();
 const PORT = process.env.PORT || 8000;
 server.use(cors({
-  origin: [process.env.CORS_ORIGIN],
-  credentials: true, //requiured for setting cookie... /** https://www.reddit.com/r/reactjs/comments/vxvdib/cookie_not_being_set_in_react_app_express_backend/?rdt=46764 */
+  origin: process.env.CORS_ORIGIN,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['*', 'Authorization']
 }));
 
 server.use(cookieParser());
